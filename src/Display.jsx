@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css';
+import './Display.css';
 
 const DisplayNameForm = () => {
   const [firstName, setFirstName] = useState('');
