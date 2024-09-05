@@ -1,47 +1,64 @@
 import React, { useState } from 'react';
-import './Display.css';
+import './App.css';
 
-function Display() {
+const DisplayNameForm = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [fullName, setFullName] = useState('');
+  const [formError, setFormError] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (firstName && lastName) {
-      setFullName(`${firstName} ${lastName}`);
+    if (firstName.trim() !== '' && lastName.trim() !== '') {
+      setFullName(`Full Name: ${firstName} ${lastName}`);
+      setFormError('');
+    } else {
+      setFullName('');
+      setFormError('Please fill out both fields.');
     }
   };
 
   return (
-    <div className="App">
-      <h1>Full Name Form</h1>
+    <div className="centered-form">
+      <h2>Full Name Display</h2>
+
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="firstName">First Name:</label>
           <input
-            id="firstName"
             type="text"
+            id="firstName"
+            name="firstName"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required
           />
         </div>
+        
         <div>
           <label htmlFor="lastName">Last Name:</label>
           <input
-            id="lastName"
             type="text"
+            id="lastName"
+            name="lastName"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             required
           />
         </div>
-        <button type="submit">Submit</button>
+
+        <button type="submit">
+          Submit
+        </button>
+
+        {formError && <div className="error">{formError}</div>}
       </form>
-      {fullName && <h2>Full Name: {fullName}</h2>}
+
+      {fullName && (
+        <div className="full-name">{fullName}</div>
+      )}
     </div>
   );
-}
+};
 
-export default Display;
+export default DisplayNameForm;
