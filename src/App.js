@@ -1,9 +1,9 @@
-import Display from "./Display";
+import DisplayNameForm from "./Display";
 
 function App() {
   return (
     <div className="App">
-      <Display />
+      <DisplayNameForm />
     </div>
   );
 }
